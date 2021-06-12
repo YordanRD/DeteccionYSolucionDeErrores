@@ -4,24 +4,25 @@
 #include <iostream>
 
 using namespace std;
-// Function to calculate bit for
-// ith position
+// Funcion para calcular el bit por
+// posicion i
 int Hamming::ham_calc(int position, int c_l)
 {
 	int count = 0, i, j;
 	i = position - 1;
 
-	// Traverse to store Hamming Code
+	//	Atravesar para almacenar el código de Hamming
+
 	while (i < c_l) {
 
 		for (j = i; j < i + position; j++) {
 
-			// If current boit is 1
+			// Si el acutual bit es 1
 			if (code[j] == 1)
 				count++;
 		}
 
-		// Update i
+		// Actualizar i
 		i = i + 2 * position;
 	}
 
@@ -31,14 +32,14 @@ int Hamming::ham_calc(int position, int c_l)
 		return 1;
 }
 
-// Function to calculate hamming code
+// Funcion para calcular el codigo Hamming
 void Hamming::solve(int input[], int n)
 {
 	int i, p_n = 0, c_l, j, k;
 	i = 0;
 
-	// Find msg bits having set bit
-	// at x'th position of number
+	// Encontrar los bits del mensaje teniendo un set bit
+	// en la posicion x del numero
 	while (n > (int)pow(2, i) - (i + 1)) {
 		p_n++;
 		i++;
@@ -48,38 +49,38 @@ void Hamming::solve(int input[], int n)
 
 	j = k = 0;
 
-	// Traverse the msgBits
+	// Atravesar los msgBits
 	for (i = 0; i < c_l; i++) {
 
-		// Update the code
+		// Actualizar el codigo
 		if (i == ((int)pow(2, k) - 1)) {
 			code[i] = 0;
 			k++;
 		}
 
-		// Update the code[i] to the
-		// input character at index j
+		// Actualizar el codigo[i] de
+		// la entrada de caracter en la posicion j
 		else {
 			code[i] = input[j];
 			j++;
 		}
 	}
 
-	// Traverse and update the
-	// hamming code
+	// Atravezar y actualizar el
+	// Codigo Hamming
 	for (i = 0; i < p_n; i++) {
 
-		// Find current position
+		// Encontrar la posicion actual
 		int position = (int)pow(2, i);
 
-		// Find value at current position
+		// Encontrar el valor de la posicion actual
 		int value = ham_calc(position, c_l);
 
-		// Update the code
+		// Actualizar el codigo
 		code[position - 1] = value;
 	}
 
-	// Print the Hamming Code
+	// Mostrar el resultado
 	printf("\nHammingCode");
 	printf("\nThe generated Code Word is: ");
 	

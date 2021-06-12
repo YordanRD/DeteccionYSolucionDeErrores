@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// function to convert integer to binary string
+// Funcion para convertir un integer a un string binario
 string CRC::toBin(long long int num) {
 	string bin = "";
 	while (num) {
@@ -15,7 +15,7 @@ string CRC::toBin(long long int num) {
 	return bin;
 }
 
-// function to convert binary string to decimal
+// Funcion para convertir un string binario a un decimal
 long long int CRC::toDec(string bin) {
 	long long int num = 0;
 	for (int i = 0; i < bin.length(); i++) {
@@ -25,39 +25,39 @@ long long int CRC::toDec(string bin) {
 	return num;
 }
 
-// function to compute CRC and codeword
+// Funcion para computar CRC y la palabra clave
 void CRC::CRCS(string dataword, string generator) {
 	int l_gen = generator.length();
 	long long int gen = toDec(generator);
 
 	long long int dword = toDec(dataword);
 
-	// append 0s to dividend
+	// Añadir 0s al dividendo
 	long long int dividend = dword << (l_gen - 1);
 
 	// shft specifies the no. of least
-	// significant bits not being XORed
+	// bits significantes no siendo XOR
 	int shft = (int)ceill(log2l(dividend + 1)) - l_gen;
 	long long int rem;
 
 	while ((dividend >= gen) || (shft >= 0)) {
 
-		// bitwise XOR the MSBs of dividend with generator
-		// replace the operated MSBs from the dividend with
-		// remainder generated
+		// XOR de bit a bit del MSBs del dividendo con el generador
+		// reemplazando el MSBs operado del dividendo con
+		// el recordatorio generado
 		rem = (dividend >> shft) ^ gen;
 		dividend = (dividend & ((1 << shft) - 1)) | (rem << shft);
 
-		// change shft variable
+		// cambia la variable shft 
 		shft = (int)ceill(log2l(dividend + 1)) - l_gen;
 	}
 
-	// finally, AND the initial dividend with the remainder (=dividend)
+	// y el dividendo original con el recordatorio (=dividend)
 	long long int codeword = (dword << (l_gen - 1)) | dividend;
 
-	cout << "Cyclic Redundancy Check" << endl;
-	cout << "Remainder: " << toBin(dividend) << endl;
-	cout << "Codeword : " << toBin(codeword) << endl;
+	cout << "Verificación de redundancia cíclica" << endl;
+	cout << "Recordatorio: " << toBin(dividend) << endl;
+	cout << "Palabra Clave : " << toBin(codeword) << endl;
 	cout << endl;
 	cout << endl;
 	cout << endl;

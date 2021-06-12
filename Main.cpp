@@ -11,6 +11,8 @@ ParityChecker pc;
 
 void main()
 {
+	// Funcion para obtener el resultado del codigo Hamming
+	
 	// Given input message Bit
 	hammingCode.input[0] = 0;
 	hammingCode.input[1] = 1;
@@ -19,20 +21,25 @@ void main()
 
 	int N = 4;
 
-	// Function Call
+	
 	hammingCode.solve(hammingCode.input, N);
 
-	string dataword, generator;
-
-	dataword = "10011101";
-	generator = "1001";
-	cr7.CRCS(dataword, generator);
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	
+	//  Funcion para obtener el resultado segun la verificación de redundancia cíclica
+	string pClave, Generador;
+	pClave = "10011101";
+	Generador = "1001";
+	cr7.CRCS(pClave, Generador);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	// Funcion para obtener el resultado de la paridad
 	unsigned int n = 7;
-	cout << "Parity Checker" << endl;
-	cout << "Parity of no " << n << " = " << (pc.getParity(n) ? "odd" : "even");
+	cout << "Comprovacion de Paridad" << endl;
+	cout << "Paridad del numero " << n << " = " << (pc.getParidad(n) ? "impar" : "uniforme");
 
 	getchar();
 

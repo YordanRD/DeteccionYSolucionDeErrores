@@ -3,6 +3,6 @@ using namespace std;
 class ParityChecker
 {
 public:
-	bool getParity(unsigned int n);
+	bool getParidad(unsigned int n);
 };
 

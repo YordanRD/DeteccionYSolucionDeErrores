@@ -1,16 +1,16 @@
 #include "ParityChecker.h"
 
 
-// Function to get parity of number n. It returns 1
-// if n has odd parity, and returns 0 if n has even
-// parity
-bool ParityChecker::getParity(unsigned int n)
+// Esta funcion obtiene la paridad del numero n. Retorna 1
+// si n tiene paridad uniforme, y retorna 0 si n tiene
+// paridad impar
+bool ParityChecker::getParidad(unsigned int n)
 {
-	bool parity = 0;
+	bool paridad = 0;
 	while (n)
 	{
-		parity = !parity;
+		paridad = !paridad;
 		n = n & (n - 1);
 	}
-	return parity;
+	return paridad;
 }
